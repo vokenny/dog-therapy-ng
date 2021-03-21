@@ -1,0 +1,19 @@
+.card-container {
+  max-width: 600px;
+  background-color: #becaff;
+  box-shadow: 0 1vw 3vw -1vw #000d47;
+}
+
+mat-card-actions {
+  display: grid;
+  justify-content: center;
+}
+
+#search-breed-form {
+  display: block;
+}
+
+#fetch {
+  min-height: 40px;
+  min-width: 100px;
+}
