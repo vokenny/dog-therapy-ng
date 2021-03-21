@@ -18,11 +18,16 @@ export class DogApiService {
 
   constructor(private http: HttpClient) { }
 
+  private sanitiseInput(input: string): string {
+    return input.trim().toLowerCase()
+  }
+
   getRandomDog(): Observable<DogDataInterface> {
     return this.http.get<DogDataInterface>(this.baseUrl + '/breeds/image/random');
   }
 
-  getRandomDogByBreed(breed: string): Observable<DogDataInterface> {
-    return this.http.get<DogDataInterface>(this.baseUrl + `/breed/${breed}/images/random`);
+  getRandomDogByBreed(breed: string): Observable<DogDataInterface> {  
+    const breedParam: string = this.sanitiseInput(breed);  
+    return this.http.get<DogDataInterface>(this.baseUrl + `/breed/${breedParam}/images/random`);
   }
 }

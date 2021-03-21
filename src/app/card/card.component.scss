@@ -7,7 +7,22 @@
   overflow: hidden;
 }
 
+.image-container {
+  display: flex;
+  height: 50vh;
+  width: auto;
+}
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  width: auto;
+}
+
 img.mat-card-image {
+  border-radius: 4px;
   margin: auto;
   height: 50vh;
   width: auto;
@@ -22,8 +37,13 @@ mat-card-actions {
 
 #search-breed-form {
   display: block;
+  margin-top: 2vh;
 }
 
 #fetch {
   margin-top: -8px;
+}
+
+.error-msg {
+  padding-bottom: 20px;
 }

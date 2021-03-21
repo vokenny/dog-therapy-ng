@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DogApiService } from '../dog-api.service';
+import { catchError } from 'rxjs/operators';
+import { DogApiService, DogDataInterface } from '../dog-api.service';
 
 @Component({
   selector: 'app-card',
@@ -8,19 +9,48 @@ import { DogApiService } from '../dog-api.service';
 })
 export class CardComponent implements OnInit {
 
+  noMatchFound: boolean = false;
+  randomDog: string = '';
+  breedQuery: string = '';
+
   constructor(public dogApiService: DogApiService) { }
 
   ngOnInit(): void {
     this.getRandomDog()
   }
 
-  randomDog: string = '';
+  getRandomDog() {    
+    if (this.breedQuery) {
+      return this.dogApiService.getRandomDogByBreed(this.breedQuery).subscribe({
+        error: (_) => this.displayWarning(_),
+        next: (_: DogDataInterface) => this.displayDog(_)
+      });  
+    } else {
+      return this.dogApiService
+        .getRandomDog()
+        .subscribe({
+          error: (_) => this.displayWarning(_),
+          next: (_: DogDataInterface) => this.displayDog(_)
+        });  
+    }
+  }
 
-  getRandomDog() {
-    return this.dogApiService.getRandomDog().subscribe({
-      error: (error) => { console.log('Error fetching random dog', error) },
-      next: (dogData) => { this.randomDog = dogData.message }
-    });
+  private displayDog = (dogData: DogDataInterface) => {
+    this.randomDog = dogData.message;
+    this.ableToFindDog();          
+  }
+
+  private displayWarning = (error: any) => {
+    console.log('Error fetching random dog', error);
+    this.unableToFindDog();
+  }
+
+  private ableToFindDog = () => {
+    this.noMatchFound = false;
+  }
+
+  private unableToFindDog = () => {
+    this.noMatchFound = true;
   }
 
 }

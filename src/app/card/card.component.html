@@ -3,13 +3,25 @@
     <mat-card-title>Dog Therapy</mat-card-title>
     <mat-card-subtitle>Random dog generator</mat-card-subtitle>
   </mat-card-header>
-  <div class="image-container">
+
+  <div class="image-container" *ngIf="!noMatchFound">
     <img mat-card-image src="{{ randomDog }}" />
   </div>
+
+  <div class="error-container" *ngIf="noMatchFound">
+    <mat-error class="error-msg"> Could not find a match. </mat-error>
+  </div>
+
   <mat-form-field id="search-breed-form" appearance="fill">
     <mat-label>Search by breed</mat-label>
-    <input matInput placeholder="E.g. Pomeranian" />
+    <input
+      matInput
+      name="breedQuery"
+      [(ngModel)]="breedQuery"
+      placeholder="E.g. Pomeranian"
+    />
   </mat-form-field>
+
   <mat-card-actions>
     <button
       id="fetch"
