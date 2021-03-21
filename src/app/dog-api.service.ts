@@ -13,11 +13,16 @@ export interface DogDataInterface {
 })
 export class DogApiService {
 
+  // https://dog.ceo/dog-api/documentation
   baseUrl: string = 'https://dog.ceo/api';
 
   constructor(private http: HttpClient) { }
 
   getRandomDog(): Observable<DogDataInterface> {
     return this.http.get<DogDataInterface>(this.baseUrl + '/breeds/image/random');
+  }
+
+  getRandomDogByBreed(breed: string): Observable<DogDataInterface> {
+    return this.http.get<DogDataInterface>(this.baseUrl + `/breed/${breed}/images/random`);
   }
 }

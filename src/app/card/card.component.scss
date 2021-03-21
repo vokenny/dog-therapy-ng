@@ -1,12 +1,18 @@
 .card-container {
+  position: relative;
+  height: 80vh;
+  max-width: 80vw;
   background-color: #becaff;
   box-shadow: 0 1vw 3vw -1vw #000a38;
+  overflow: hidden;
 }
 
 img.mat-card-image {
-  max-height: 60vh;
+  margin: auto;
+  height: 50vh;
   width: auto;
-  max-width: 90vw;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 mat-card-actions {
@@ -19,6 +25,5 @@ mat-card-actions {
 }
 
 #fetch {
-  min-height: 40px;
-  min-width: 100px;
+  margin-top: -8px;
 }
