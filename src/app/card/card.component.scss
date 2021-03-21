@@ -1,7 +1,12 @@
 .card-container {
-  max-width: 600px;
   background-color: #becaff;
-  box-shadow: 0 1vw 3vw -1vw #000d47;
+  box-shadow: 0 1vw 3vw -1vw #000a38;
+}
+
+img.mat-card-image {
+  max-height: 60vh;
+  width: auto;
+  max-width: 90vw;
 }
 
 mat-card-actions {
