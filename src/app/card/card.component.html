@@ -12,14 +12,31 @@
     <mat-error class="error-msg"> Could not find a match. </mat-error>
   </div>
 
-  <mat-form-field id="search-breed-form" appearance="fill">
+  <mat-form-field
+    *ngIf="!dogBreeds.length"
+    class="search-breed-form"
+    appearance="fill"
+  >
     <mat-label>Search by breed</mat-label>
     <input
       matInput
-      name="breedQuery"
+      name="breedQueryInput"
       [(ngModel)]="breedQuery"
       placeholder="E.g. Pomeranian"
     />
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="dogBreeds.length"
+    class="search-breed-form"
+    appearance="fill"
+  >
+    <mat-label>Search by breed</mat-label>
+    <mat-select [(ngModel)]="breedQuery" name="breedQuerySelect">
+      <mat-option *ngFor="let breed of dogBreeds" [value]="breed">
+        {{ breed }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-card-actions>

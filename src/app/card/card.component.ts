@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError } from 'rxjs/operators';
-import { DogApiService, DogDataInterface } from '../dog-api.service';
+import { Subscription } from 'rxjs';
+import { BreedDataInterface, DogApiService, DogDataInterface } from '../dog-api.service';
 
 @Component({
   selector: 'app-card',
@@ -10,16 +10,25 @@ import { DogApiService, DogDataInterface } from '../dog-api.service';
 export class CardComponent implements OnInit {
 
   noMatchFound: boolean = false;
+  dogBreeds: string[] = [];
   randomDog: string = '';
   breedQuery: string = '';
 
   constructor(public dogApiService: DogApiService) { }
 
   ngOnInit(): void {
-    this.getRandomDog()
+    this.getListOfBreeds();
+    this.getRandomDog();
   }
 
-  getRandomDog() {    
+  getListOfBreeds(): Subscription {
+    return this.dogApiService.getListOfBreeds().subscribe({
+      error: (_) => console.log('Error fetching list of dog breeds', _),
+      next: (data: BreedDataInterface) => this.saveListOfBreeds(data.message)
+    });
+  }
+
+  getRandomDog(): Subscription {    
     if (this.breedQuery) {
       return this.dogApiService.getRandomDogByBreed(this.breedQuery).subscribe({
         error: (_) => this.displayWarning(_),
@@ -35,22 +44,19 @@ export class CardComponent implements OnInit {
     }
   }
 
-  private displayDog = (dogData: DogDataInterface) => {
+  private saveListOfBreeds = (breedsObj: object): void => {
+    Object.keys(breedsObj).forEach(breed => {
+      this.dogBreeds.push(breed);
+    });
+  }
+
+  private displayDog = (dogData: DogDataInterface): void => {
     this.randomDog = dogData.message;
-    this.ableToFindDog();          
+    this.noMatchFound = false;          
   }
 
-  private displayWarning = (error: any) => {
+  private displayWarning = (error: any): void => {
     console.log('Error fetching random dog', error);
-    this.unableToFindDog();
-  }
-
-  private ableToFindDog = () => {
-    this.noMatchFound = false;
-  }
-
-  private unableToFindDog = () => {
     this.noMatchFound = true;
   }
-
 }

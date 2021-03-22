@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+export interface BreedDataInterface {
+  message: Object
+  status: string
+}
 
 export interface DogDataInterface {
   message: string
@@ -20,6 +24,10 @@ export class DogApiService {
 
   private sanitiseInput(input: string): string {
     return input.trim().toLowerCase()
+  }
+
+  getListOfBreeds(): Observable<BreedDataInterface> {
+    return this.http.get<BreedDataInterface>(this.baseUrl + `/breeds/list/all`);
   }
 
   getRandomDog(): Observable<DogDataInterface> {
