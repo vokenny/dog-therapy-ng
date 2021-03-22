@@ -1,6 +1,8 @@
 # dog-therapy-ng
 
 Simple Angular app with TypeScript to display randomised dog photos :smiley:
+You can also get randomised dog photos by breed; it should have a dropdown selection if the dog breeds are successfully fetched from the API,
+otherwise an input field will be shown to search by. Search queries submitted by the input field are trimmed & lowercased to make it suitable for the API.
 
 https://vokenny.github.io/dog-therapy-ng
 
