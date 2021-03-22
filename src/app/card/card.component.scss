@@ -8,9 +8,11 @@
 }
 
 .image-container {
+  margin-top: 2vh;
   display: flex;
   height: 50vh;
   width: auto;
+  justify-content: center;
 }
 
 .error-container {
@@ -22,11 +24,9 @@
 }
 
 img.mat-card-image {
-  border-radius: 4px;
-  margin: auto;
   height: 50vh;
   width: auto;
-  max-width: 100%;
+  max-width: 120%;
   object-fit: contain;
 }
 
@@ -37,11 +37,12 @@ mat-card-actions {
 
 #search-breed-form {
   display: block;
-  margin-top: 2vh;
+  margin-top: calc(-15px + 2.5vh);
 }
 
 #fetch {
-  margin-top: -8px;
+  margin-top: calc(-8px - 0.5vh);
+  min-width: 150px;
 }
 
 .error-msg {
