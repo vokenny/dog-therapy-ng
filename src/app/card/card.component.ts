@@ -30,18 +30,18 @@ export class CardComponent implements OnInit {
   }
 
   getRandomDog(): Subscription {    
-    if (this.breedQuery) {
-      return this.dogApiService.getRandomDogByBreed(this.breedQuery).subscribe({
+    if (!this.breedQuery || this.breedQuery === 'Any breed') {
+      return this.dogApiService
+      .getRandomDog()
+      .subscribe({
         error: (_) => this.displayWarning(_),
         next: (_: DogDataInterface) => this.displayDog(_)
       });  
     } else {
-      return this.dogApiService
-        .getRandomDog()
-        .subscribe({
-          error: (_) => this.displayWarning(_),
-          next: (_: DogDataInterface) => this.displayDog(_)
-        });  
+      return this.dogApiService.getRandomDogByBreed(this.breedQuery).subscribe({
+        error: (_) => this.displayWarning(_),
+        next: (_: DogDataInterface) => this.displayDog(_)
+      });  
     }
   }
 
@@ -49,6 +49,8 @@ export class CardComponent implements OnInit {
     Object.keys(breedsObj).forEach(breed => {
       this.dogBreeds.push(breed);
     });
+
+    this.dogBreeds.unshift('Any breed');
   }
 
   private displayDog = (dogData: DogDataInterface): void => {
