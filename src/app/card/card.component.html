@@ -2,6 +2,12 @@
   <mat-card-header>
     <mat-card-title>Dog Therapy</mat-card-title>
     <mat-card-subtitle>Random dog generator</mat-card-subtitle>
+    <mat-spinner
+      id="spinner"
+      diameter="40"
+      mode="indeterminate"
+      *ngIf="spinnerService.visibility | async"
+    ></mat-spinner>
   </mat-card-header>
 
   <div class="image-container" *ngIf="!noMatchFound">
@@ -50,3 +56,5 @@
     </button>
   </mat-card-actions>
 </mat-card>
+
+<!-- *ngIf="spinnerService.visibility | async" -->

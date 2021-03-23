@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { BreedDataInterface, DogApiService, DogDataInterface } from '../dog-api.service';
+import { BreedDataInterface, DogApiService, DogDataInterface } from '../services/dog-api.service';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +15,7 @@ export class CardComponent implements OnInit {
   randomDog: string = '';
   breedQuery: string = '';
 
-  constructor(public dogApiService: DogApiService) { }
+  constructor(public spinnerService: SpinnerService, private dogApiService: DogApiService) { }
 
   ngOnInit(): void {
     this.getListOfBreeds();

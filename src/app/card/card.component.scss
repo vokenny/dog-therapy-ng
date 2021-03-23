@@ -1,10 +1,14 @@
 .card-container {
-  position: relative;
   height: 80vh;
   max-width: 80vw;
   background-color: #becaff;
   box-shadow: 0 1vw 3vw -1vw #000a38;
   overflow: hidden;
+}
+
+#spinner {
+  position: absolute;
+  right: 16px;
 }
 
 .image-container {
@@ -13,6 +17,7 @@
   height: 50vh;
   width: auto;
   justify-content: center;
+  align-items: center;
 }
 
 .error-container {
@@ -31,8 +36,8 @@ img.mat-card-image {
 }
 
 mat-card-actions {
+  margin: auto 0px;
   display: grid;
-  justify-content: center;
 }
 
 .search-breed-form {
