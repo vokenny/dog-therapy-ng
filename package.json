@@ -5,8 +5,6 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:stats": "ng build --stats-json",
-    "build:prod": "ng build --prod --base-href 'https://vokenny.github.io/dog-therapy-ng/' --stats-json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
