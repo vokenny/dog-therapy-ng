@@ -35,18 +35,20 @@ img.mat-card-image {
   object-fit: contain;
 }
 
-mat-card-actions {
-  margin: auto 0px;
-  display: grid;
-}
-
 .search-breed-form {
   display: block;
   margin-top: calc(-15px + 2.5vh);
 }
 
+mat-card-actions {
+  position: absolute;
+  bottom: 2vh;
+  margin: auto 0px !important;
+  display: grid;
+  width: calc(100% - 32px);
+}
+
 #fetch {
-  margin-top: calc(-8px - 0.5vh);
   min-width: 150px;
 }
 
