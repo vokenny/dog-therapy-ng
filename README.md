@@ -9,7 +9,7 @@ https://vokenny.github.io/dog-therapy-ng
 
 Uses the [Dog API](https://dog.ceo/dog-api/documentation/) to source the random images.
 
-<img src="./src/assets/dog-therapy-ng-demo.gif" alt="dog-theraypy-ng demo" width="50%" height="auto">
+<img src="./src/assets/dog-therapy-ng-demo.gif" alt="dog-theraypy-ng demo" width="75%" height="auto">
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
